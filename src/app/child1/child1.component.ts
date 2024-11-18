@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Customer } from '../model/customer';
 
 @Component({
@@ -10,17 +10,10 @@ import { Customer } from '../model/customer';
   styleUrl: './child1.component.scss'
 })
 export class Child1Component {
-  // customer: Customer = {
-  //   id: 15, 
-  //   fullname: "Ioannis Daniil", 
-  //   address: {
-  //     street: "Athens Av.", 
-  //     zipCode: "133 22", 
-  //     number: 5
-  //   }
-  // };
-
-  customer?: Customer;
+  @Input() array: number[] = []; // []
+  @Input() customerName?: string; // undefined
+  @Input() customer?: Customer; // undefined
+  @Output() eventEmitter: EventEmitter<any> = new EventEmitter;
 
   constructor() {
     // this.customer = {
@@ -40,5 +33,10 @@ export class Child1Component {
     // }
     //this.customer!.address.number = this.customer!.address.number + 1;
     //this.customer?.address.number = this.customer?.address.number + 1 // do not do this
+  }
+
+  onClickChildButton() {
+    console.log("on click child event");
+    this.eventEmitter.emit(5);
   }
 }

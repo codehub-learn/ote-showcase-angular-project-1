@@ -1,6 +1,12 @@
-@if (customer) {
+<!-- @if (customer) {
     <h1>{{ customer.address.street }}</h1>
-}
+} -->
+
+{{ customerName }}
+
+{{ customer?.fullname }}
+
+<button (click)="onClickChildButton()">Child Button</button>
 
 <!-- <h1>{{ customer!.address.street }}</h1> -->
 
