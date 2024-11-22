@@ -3,7 +3,7 @@
 <ul>
     @for (user of users; track $index) {
     <li>
-        <span>{{user.firstname}} {{user.lastname}}</span>
+        <span (click)="emitUser(user)">{{user.firstname}} {{user.lastname}}</span>
     </li>
     }
 </ul>

@@ -2,13 +2,19 @@
     <div>
         <app-navbar></app-navbar>
     </div>
+
     <div class="middle-container">
-        <div class="users-list">
-            <app-user-list></app-user-list>
+        <div class="clear-button">
+            <button (click)="clearUser()">Clear selected user</button>
         </div>
-        <div class="user-details">
-            <app-user-details></app-user-details>
-        </div>    
+        <div class="users-container">
+            <div class="users-list">
+                <app-user-list (eventEmitter)="captureEvent($event)"></app-user-list>
+            </div>
+            <div class="user-details">
+                <app-user-details [user]="selectedUser"></app-user-details>
+            </div> 
+        </div>
     </div>
     <div>
         <app-footer></app-footer>

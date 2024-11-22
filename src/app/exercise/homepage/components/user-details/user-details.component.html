@@ -1,1 +1,13 @@
-<p>user-details works!</p>
+@if(user){
+    <div class="user">
+        <div>ID: {{ user?.id }}</div>
+        <div>Firstname: {{ user?.firstname }}</div>
+        <div>Lastname: {{ user?.lastname }}</div>
+        <div>Address: {{ user?.address }}</div>
+        <div>Date of birth: {{ user?.dateOfBirth }}</div>
+    </div>
+} @else {
+    <div class="no-user-selected">
+        No user selected
+    </div>
+}
