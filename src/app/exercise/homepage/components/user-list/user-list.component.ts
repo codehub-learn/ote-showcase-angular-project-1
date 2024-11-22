@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { User } from '../../../shared/models/user';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -10,11 +11,34 @@ import { User } from '../../../shared/models/user';
 })
 export class UserListComponent {
   @Output() eventEmitter: EventEmitter<User> = new EventEmitter();
-  users: User[] = [
-    {id: 1, firstname: "Ioannis", lastname: "Daniil", address: "13th Av.", dateOfBirth: "15/5/75"},
-    {id: 2, firstname: "Ioanna", lastname: "Geovinch", address: "15th Av.", dateOfBirth: "15/5/86"},
-    {id: 3, firstname: "Dimitra", lastname: "Damter", address: "18th Str.", dateOfBirth: "15/5/65"},
-  ];
+  users: User[] = [];
+
+  constructor(private userService: UserService){
+      //this.users = userService.getUsers();
+
+      userService.getUsersOnline().subscribe((result: any) => {
+        console.log("hello");
+        console.log(result);
+        console.log(result.data);
+        console.log(result.data[0].first_name);
+          
+        for(let user of result.data){
+          this.users.push({
+            id: user.id,
+            firstname: user.first_name,
+            lastname: user.last_name,
+            dateOfBirth: "14/5/1992",
+            address: "124124 Av. Street"
+          })
+        }
+      });
+      console.log("after subscription");
+      
+      //...
+      //...
+      //...
+      //...
+  }
 
   emitUser(user: User) {
     //console.log("test");
